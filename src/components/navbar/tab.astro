@@ -1,0 +1,53 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  current?: boolean;
+  icon?: string;
+}
+
+const { href, text, current } = Astro.props;
+---
+
+<style>
+  .corner-left {
+    box-shadow: 2px 1px 0;
+    color: theme(colors.base.DEFAULT);
+  }
+  .corner-right {
+    box-shadow: -2px 1px 0;
+    color: theme(colors.base.DEFAULT);
+  }
+</style>
+
+<span
+  class=`me-4 py-2 px-4 inline-block border rounded-t-md relative ${current ? "border-b-base border-blue": "border-blue"} `
+>
+  {
+    current && (
+      <span
+        class="block absolute -left-[0.67rem] -bottom-[1px] border-b border-r border-blue rounded-br-[0.375rem] text-base corner-left"
+        aria-hidden="true"
+      >
+        &nbsp;
+      </span>
+    )
+  }
+  <a
+    href={href}
+    class=`${current ? "font-medium":""} text-blue flex items-center gap-2`
+    aria-current="page"
+  >
+    <span>{text}</span>
+  </a>
+  {
+    current && (
+      <span
+        class="block absolute -right-[0.67rem] -bottom-[1px] border-l border-b border-blue rounded-bl-[0.375rem] text-base corner-right"
+        aria-hidden="true"
+      >
+        &nbsp;
+      </span>
+    )
+  }
+</span>

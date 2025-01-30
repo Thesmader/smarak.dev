@@ -1,0 +1,36 @@
+---
+import { Icon } from "astro-icon/components";
+import Tab from "./tab.astro";
+const page = "/" + Astro.url.pathname.split("/")[1];
+const navItems = [
+  { text: "~ home", href: "/" },
+  { text: "posts", href: "/posts" },
+  // { text: "./about", href: "/about" },
+  // { text: "./projects", href: "/projects" },
+];
+---
+
+<nav class="relative flex justify-between">
+  <span class="absolute w-full border-b bottom-0 left-0 border-blue"></span>
+  <span class="relative px-4">
+    {
+      navItems.map((item) => (
+        <Tab href={item.href} text={item.text} current={page === item.href} />
+      ))
+    }
+  </span>
+  <button id="theme-switch">
+    <Icon
+      name="material-symbols-light:light-mode-rounded"
+      height="2rem"
+      width="2rem"
+      class="text-blue dark:block hidden"
+    />
+    <Icon
+      name="material-symbols-light:dark-mode-rounded"
+      height="2rem"
+      width="2rem"
+      class="text-blue dark:hidden"
+    />
+  </button>
+</nav>

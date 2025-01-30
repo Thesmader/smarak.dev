@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body a {
+    @apply underline underline-offset-4 text-green;
+  }
+
+  nav a {
+    @apply no-underline text-text;
+  }
+}
